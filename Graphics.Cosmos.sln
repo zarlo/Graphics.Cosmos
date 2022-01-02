@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphics.Cosmos", "Graphics.Cosmos\Graphics.Cosmos.csproj", "{D6576B6F-C930-4C1F-BF53-12450DE43D64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphics", "Graphics\Graphics.csproj", "{D6576B6F-C930-4C1F-BF53-12450DE43D64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphics.HAL", "Graphics.HAL\Graphics.HAL.csproj", "{A825743B-6723-4266-94A2-8A607BD42667}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D6576B6F-C930-4C1F-BF53-12450DE43D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6576B6F-C930-4C1F-BF53-12450DE43D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6576B6F-C930-4C1F-BF53-12450DE43D64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A825743B-6723-4266-94A2-8A607BD42667}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A825743B-6723-4266-94A2-8A607BD42667}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A825743B-6723-4266-94A2-8A607BD42667}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A825743B-6723-4266-94A2-8A607BD42667}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

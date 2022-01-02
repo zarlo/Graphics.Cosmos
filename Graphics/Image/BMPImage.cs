@@ -1,13 +1,11 @@
-﻿using Graphics.Cosmos.Enum;
+﻿using Graphics.Enum;
 
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Cosmos.System.Graphics;
+using Cosmos.Core;
 
-namespace Graphics.Cosmos.Image
+namespace Graphics.Image
 {
     public class BMPImage : IImage
     {
@@ -27,7 +25,7 @@ namespace Graphics.Cosmos.Image
         /// </summary>
         public ColorDepth Depth { get; protected set; }
 
-        public ImageFormat Format => ImageFormat.bmp;
+        public Enum.ImageFormat Format => Enum.ImageFormat.bmp;
 
         public int[] RawData { get; protected set; }
 
@@ -47,12 +45,12 @@ namespace Graphics.Cosmos.Image
 
         public void Save(Stream stream)
         {
-            Save(stream, ImageFormat.bmp);
+            Save(stream, Enum.ImageFormat.bmp);
         }
 
-        public void Save(Stream stream, ImageFormat format)
+        public void Save(Stream stream, Enum.ImageFormat format)
         {
-            if (format != ImageFormat.bmp) throw new NotImplementedException();
+            if (format != Enum.ImageFormat.bmp) throw new NotImplementedException();
             foreach (var i in RawData)
             {
                 var data = BitConverter.GetBytes(i);
@@ -64,5 +62,22 @@ namespace Graphics.Cosmos.Image
         {
             return RawData;
         }
+        public static BMPImage Load(byte[] data, uint width, uint height, ColorDepth colorDepth) 
+        {
+            var _data = Array.ConvertAll(data, Convert.ToInt32);
+            return Load(_data, width, height, colorDepth);
+        }
+        public static BMPImage Load(int[] data,  uint width, uint height, ColorDepth colorDepth) 
+        {
+
+            var output = new BMPImage(width, height, colorDepth)
+            {
+                RawData = data
+            };
+
+            return output;
+        }
+
+
     }
 }

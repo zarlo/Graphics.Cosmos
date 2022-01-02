@@ -1,9 +1,10 @@
-﻿using System;
-using System.Drawing;
+﻿using Graphics.Image;
+using Cosmos.System.Graphics;
+using System;
 using System.Collections.Generic;
-using Graphics.Cosmos.Image;
+using system = System.Drawing;
 
-namespace Graphics.Cosmos
+namespace Graphics
 {
     public interface ICanvas
     {
@@ -11,30 +12,30 @@ namespace Graphics.Cosmos
         /// <summary>
         /// Available graphics modes.
         /// </summary>
-        public List<Mode> AvailableModes { get; }
+        List<Mode> AvailableModes { get; }
 
         /// <summary>
         /// Get default graphics mode.
         /// </summary>
-        public Mode DefaultGraphicMode { get; }
+        Mode DefaultGraphicMode { get; }
 
         /// <summary>
         /// Get and set graphics mode.
         /// </summary>
-        public Mode Mode { get; }
+        Mode Mode { get; }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="mode"></param>
-        public void SetMode(Mode mode);
+        void SetMode(Mode mode);
 
         /// <summary>
         /// Clear all the Canvas with the Black color.
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on fatal error.</exception>
         /// <exception cref="Exception">Thrown on memory access violation.</exception>
-        public void Clear();
+        void Clear();
 
         /// <summary>
         /// Clear all the Canvas with the specified color.
@@ -42,17 +43,22 @@ namespace Graphics.Cosmos
         /// <param name="color">Color.</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on fatal error.</exception>
         /// <exception cref="Exception">Thrown on memory access violation.</exception>
-        public void Clear(Color color);
+        void Clear(system.Color color);
 
         /// <summary>
         /// Display graphic mode
         /// </summary>
-        public void Disable();
+        void Disable();
+
+        /// <summary>
+        /// Display graphic mode
+        /// </summary>
+        void Enable();
 
         /// <summary>
         /// Swap Buffer
         /// </summary>
-        public void SwapBuffer();
+        void SwapBuffer();
 
         /// <summary>
         /// Draw point.
@@ -60,7 +66,7 @@ namespace Graphics.Cosmos
         /// <param name="color">Color to use.</param>
         /// <param name="point">Point.</param>
         /// <exception cref="Exception">Thrown on memory access violation.</exception>
-        public void DrawPoint(Color color, Point point);
+        void DrawPoint(system.Color color, Point point);
 
         /// <summary>
         /// Draw point.
@@ -69,17 +75,17 @@ namespace Graphics.Cosmos
         /// <param name="x">X coordinate.</param>
         /// <param name="y">Y coordinate.</param>
         /// <exception cref="Exception">Thrown on memory access violation.</exception>
-        public void DrawPoint(Color color, int x, int y);
+        void DrawPoint(system.Color color, int x, int y);
 
         /// <summary>
         /// Name of the backend
         /// </summary>
-        public string Name { get; }
+        string Name { get; }
 
         /// <summary>
         /// Display screen
         /// </summary>
-        public void Display();
+        void Update();
 
         /// <summary>
         /// Get point color.
@@ -88,7 +94,7 @@ namespace Graphics.Cosmos
         /// <param name="y">Y coordinate.</param>
         /// <returns>Color value.</returns>
         /// <exception cref="Exception">Thrown on memory access violation.</exception>
-        public Color GetPointColor(int x, int y);
+        system.Color GetPointColor(int x, int y);
 
         /// <summary>
         /// Get point color.
@@ -96,7 +102,7 @@ namespace Graphics.Cosmos
         /// <param name="point">Point.</param>
         /// <returns>Color value.</returns>
         /// <exception cref="Exception">Thrown on memory access violation.</exception>
-        public Color GetPointColor(Point point);
+        system.Color GetPointColor(Point point);
 
         /// <summary>
         /// Draw array of colors.
@@ -107,7 +113,7 @@ namespace Graphics.Cosmos
         /// <param name="height">unused.</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if coordinates are invalid, or width is less than 0.</exception>
         /// <exception cref="NotImplementedException">Thrown if color depth is not supported.</exception>
-        public void DrawArray(Color[] colors, Point point, int width, int height);
+        void DrawArray(system.Color[] colors, Point point, int width, int height);
 
         /// <summary>
         /// Draw array of colors.
@@ -119,7 +125,30 @@ namespace Graphics.Cosmos
         /// <param name="height">unused.</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown if coordinates are invalid, or width is less than 0.</exception>
         /// <exception cref="NotImplementedException">Thrown if color depth is not supported.</exception>
-        public void DrawArray(Color[] colors, int x, int y, int width, int height);
+        void DrawArray(system.Color[] colors, int x, int y, int width, int height);
+
+        /// <summary>
+        /// Draw array of colors.
+        /// </summary>
+        /// <param name="colors">Colors array.</param>
+        /// <param name="point">Starting point.</param>
+        /// <param name="width">Width.</param>
+        /// <param name="height">unused.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if coordinates are invalid, or width is less than 0.</exception>
+        /// <exception cref="NotImplementedException">Thrown if color depth is not supported.</exception>
+        void DrawArray(int[] colors, Point point, int width, int height);
+
+        /// <summary>
+        /// Draw array of colors.
+        /// </summary>
+        /// <param name="colors">Colors array.</param>
+        /// <param name="x">X coordinate.</param>
+        /// <param name="y">Y coordinate.</param>
+        /// <param name="width">Width.</param>
+        /// <param name="height">unused.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if coordinates are invalid, or width is less than 0.</exception>
+        /// <exception cref="NotImplementedException">Thrown if color depth is not supported.</exception>
+        void DrawArray(int[] colors, int x, int y, int width, int height);
 
         /// <summary>
         /// Draw image.
@@ -129,7 +158,24 @@ namespace Graphics.Cosmos
         /// <param name="y">Y coordinate.</param>
         /// <exception cref="Exception">Thrown on memory access violation.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown on fatal error.</exception>
-        public void DrawImage(IImage image, int x, int y);
+        void DrawImage(IImage image, int x, int y);
+
+        /// <summary>
+        /// Draw image.
+        /// </summary>
+        /// <param name="image">Image to draw.</param>
+        /// <param name="pos">pos.</param>
+        /// <exception cref="Exception">Thrown on memory access violation.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown on fatal error.</exception>
+        void DrawImage(IImage image, Point pos);        
+        ICursor Cursor { get; }
+
+        void SetSoftwareCursor(ICursor cursor);
+        void UseSoftwareCursor();
+        void UseHardwareCursor();
+
+        void DrawFilledRectangle(system.Color color, Point point, int width, int height);
+        void DrawFilledRectangle(system.Color color, int x_start, int y_start, int width, int height);
 
     }
 }

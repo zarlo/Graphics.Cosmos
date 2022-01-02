@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
+using Cosmos.System.Graphics;
 
-using Graphics.Cosmos.Enum;
+using Graphics.Enum;
 
-namespace Graphics.Cosmos.Image
+namespace Graphics.Image
 {
     public interface IImage
     {
@@ -39,10 +35,10 @@ namespace Graphics.Cosmos.Image
         /// <summary>
         /// Get the image Format.
         /// </summary>
-        public ImageFormat Format { get; }
+        public Enum.ImageFormat Format { get; }
 
         public void Save(Stream stream);
-        public void Save(Stream stream, ImageFormat format);
+        public void Save(Stream stream, Enum.ImageFormat format);
 
     }
 

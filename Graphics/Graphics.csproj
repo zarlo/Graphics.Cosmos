@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Graphics</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Cosmos.System2" version="0-*" Version="0-*" />
+    <PackageReference Include="GitBuildInfo.SourceGenerator" IsImplicitlyDefined="true" Version="*-*">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Backend\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Graphics.HAL\Graphics.HAL.csproj" />
+  </ItemGroup>
+
+
+
+</Project>
